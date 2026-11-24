@@ -1,0 +1,12 @@
+{
+  "name": "grosir-mitra",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "node tools/agentify-website/scripts/build_network.mjs agen_grosir.hocon --manifest agent-manifest.json --runtime runtime",
+    "check": "node tools/agentify-website/scripts/build_network.mjs agen_grosir.hocon --manifest agent-manifest.json --runtime runtime --check",
+    "test": "node --test \"tests/*.test.mjs\""
+  }
+}

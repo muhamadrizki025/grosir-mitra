@@ -1,0 +1,83 @@
+{
+  "brand": "Grosir Mitra — Agen Sembako",
+  "networks": [
+    {
+      "name": "agen_grosir",
+      "front_man": "agen_grosir",
+      "hocon": "./agen_grosir.network.json",
+      "description": "Agen Grosir Mitra: daftar harga sembako grosir, hitung restock dan hari antar, pesan bayar di tempat. Wholesale restock agent that warung agents can call across sites.",
+      "tags": [
+        "agentified-website",
+        "umkm",
+        "indonesia",
+        "wholesale",
+        "b2b",
+        "bahasa-indonesia"
+      ],
+      "sample_queries": [
+        "Berapa harga minyak goreng dan gula per dus/bal?",
+        "Hitung 3 dus minyak goreng 2 L dan 2 bal gula. Kapan diantar?",
+        "Pesan 2 dus mi goreng dan 2 dus air mineral untuk Warung Bu Sri, WA 081234567890, Jl. Margasari No. 5, Karawang Timur.",
+        "Ada telur satu peti?",
+        "Bisa bayar pakai kartu kredit atau dicicil?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Calls no other sites. Other agent sites may run this network; the bridge shares the price list and quote with any site, and the restock order (in Grosir Mitra's own window) only with Buku Bon Agentik."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "agen_grosir",
+    "front_man": "agen_grosir",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#166534"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "agen_grosir",
+        "front_man": "agen_grosir",
+        "aliases": [
+          "agen_grosir"
+        ],
+        "url": "agen_grosir"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_price_list",
+      "quote_restock",
+      "place_restock_order",
+      "order_restock"
+    ]
+  }
+}

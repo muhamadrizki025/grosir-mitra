@@ -1,0 +1,17 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "agen_grosir",
+      "front_man": "agen_grosir",
+      "aliases": [
+        "agen_grosir"
+      ],
+      "url": "agen_grosir"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

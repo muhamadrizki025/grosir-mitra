@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#166534">
+<title>Grosir Mitra — Agen Sembako (Open Agentic Web demo)</title>
+<meta name="description" content="Grosir sembako kecil di Karawang dengan agen yang bisa dipanggil agen warung dari situs lain. Open Agentic Web partner site.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/json" href="agent-manifest.json" title="Agent network manifest">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="js/app.js"></script>
+<script type="module" src="site.js"></script>
+</head>
+<body>
+<header class="site"><span class="brand">Grosir Mitra</span><span class="sub">Agen sembako · Karawang</span></header>
+<main>
+  <section class="intro">
+    <h1>Restock warung tanpa telepon bolak-balik</h1>
+    <p>Daftar harga grosir, hitung total dan hari antar, pesan bayar di tempat. Agen kami juga bisa ditanya langsung oleh agen warung Anda dari situs lain — misalnya <a href="https://muhamadrizki025.github.io/buku-bon-agentik/">Buku Bon Agentik</a>.<br><span lang="en">A small wholesaler whose agent other sites' agents can call: price list, restock quote, cash-on-delivery order.</span></p>
+    <p class="demo">⚠ Harga contoh untuk demo Open Agentic Web, bukan penawaran nyata. <span lang="en">Demo prices, not a real offer.</span></p>
+    <p>Hari ini: <b id="today"></b> · Antar berikutnya: <b id="next-delivery"></b></p>
+  </section>
+
+  <section class="panel">
+    <h2>Daftar harga</h2>
+    <table class="prices"><thead><tr><th>Barang</th><th class="num">Harga</th><th>Jumlah</th></tr></thead><tbody id="prices"></tbody></table>
+    <ul id="rules" class="rules"></ul>
+  </section>
+
+  <section class="panel">
+    <h2>Hitung &amp; pesan</h2>
+    <div id="quote" class="quote" aria-live="polite"></div>
+    <form id="order-form">
+      <label>Nama warung <input name="warungName" maxlength="60" required></label>
+      <label>Nomor WhatsApp <input name="whatsapp" type="tel" maxlength="20" placeholder="0812xxxxxxx" required></label>
+      <label>Alamat / patokan <input name="address" maxlength="160" required></label>
+      <label>Kecamatan <select name="district" id="district" required></select></label>
+      <p id="order-error" class="error" role="alert"></p>
+      <button>Pesan (bayar saat diantar)</button>
+    </form>
+    <p id="order-done" class="done" role="status"></p>
+    <h3>Pesanan dari perangkat ini</h3>
+    <ul id="orders" class="orders"></ul>
+  </section>
+
+  <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
+    <h2 id="assistant-heading">Tanya Agen Grosir <small lang="en">· ask the agent</small></h2>
+    <p>Agen membaca daftar harga ini, menghitung restock dengan aturan yang sama, dan bisa memesankan setelah Anda konfirmasi.</p>
+    <p class="assistant-note">Pesan Anda dan data halaman ini dikirim ke penyedia AI yang Anda pilih di pengaturan (kunci Anda sendiri). Pesanan selalu minta konfirmasi dulu. Agen warung dari situs lain hanya bisa membaca harga, menghitung, dan membuka jendela pesanan di situs ini — data warung Anda diisi di jendela itu, bukan lewat agen.</p>
+    <p id="assistant-status" role="status">Menyambungkan asisten… Jika pesan ini tidak berubah, asisten gagal dimuat; halaman tetap bisa dipakai.</p>
+    <div id="agent-app">
+      <div data-ns-slot="header"></div>
+      <div class="assistant-panels">
+        <div data-ns-slot="chat"></div>
+        <div data-ns-slot="agents"></div>
+      </div>
+      <div data-ns-slot="settings"></div>
+    </div>
+  </section>
+  <footer class="footer">Open Agentic Web: <a href="agent-manifest.json">agent-manifest.json</a> · <a href="agen_grosir.network.json">agen_grosir.network.json</a> · network URL <code>…/grosir-mitra/agen_grosir</code> · <a href="https://github.com/muhamadrizki025/grosir-mitra">kode sumber (MIT)</a></footer>
+</main>
+</body>
+</html>

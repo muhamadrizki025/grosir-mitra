@@ -1,0 +1,7 @@
+{
+  "protocol": "nsdeploy-agent-mcp/v1",
+  "network": "agen_grosir",
+  "front_man": "agen_grosir",
+  "available": false,
+  "reason": "This is a static bundle; a public MCP facade requires an application host."
+}
